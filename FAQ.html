@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honor Store</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">HONOR GYM WEAR STORE</a>
+            <div class="nav-links">
+            <ul>
+                <li class="active"><a href="index.html"> Home</a></li>
+                <li><a href="products.html"> Products</a></li>
+                <li><a href="FAQ.html"> FAQ</a></li>
+                <li><a href="checkout.html"> Checkout</a></li>
+                <li><a href="contact.html"> Contact</a></li>
+            </ul>
+            </div>
+        </nav>  
+    </header>
+
+    <section class="faq-section">
+
+    <h2 class="section-title">Frequently Asked Questions</h2>
+
+    <div class="faq-container">
+
+
+        <div class="faq-item">
+            <strong>How long does delivery take?</strong>
+            <p>We deliver within 3–7 working days depending on the customer’s location.</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>Can I return products?</strong>
+            <p>Yes, returns are accepted within 14 days of purchase.</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>What payment options are accepted?</strong>
+            <p>We accept Orange Money payments as well as FNB.</p>
+        </div>
+
+        <div class="faq-item">
+            <strong>How can I track my order?</strong>
+            <p>An email containing your tracking number will be sent after placing your order.</p>
+        </div>
+
+    </div>
+
+    <div class="honor-agent">
+
+        <h3>Ask Honor Agent</h3>
+        <p class="agent-subtitle">
+            Your virtual assistant for delivery, payments, orders, and store help.
+        </p>
+
+        <div class="chat-box" id="chatBox">
+            <div class="agent-message">
+                👋 Hello! I’m <strong>Honor Agent</strong>. Ask me anything about Honor Store.
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <input type="text" id="userQuestion" placeholder="Type your question here..." />
+            <button onclick="askHonorAgent()">Ask</button>
+        </div>
+
+    </div>
+
+</section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+               <h3>Honor Store</h3>
+               <p> We honor. Live in purpose.</p>
+            </div>
+
+            <div class="footer-section">
+               <h3>Quick Links</h3>
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="products.html">Products</a></li>
+                  <li><a href="FAQ.html">FAQ</a></li>
+                  <li><a href="checkout.html">Checkout</a></li>
+                  <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+              <h3>Contact info</h3>
+              <p>Email: tshegofani@gmail.com<br>
+               Phone: +267 77 997 097<br>
+               +267 72 857 869</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Honor Store. All rights reserved.</p>
+            </div>
+    </footer>
+<script>
+function askHonorAgent() {
+    const input = document.getElementById("userQuestion");
+    const chatBox = document.getElementById("chatBox");
+    const question = input.value.toLowerCase();
+
+    if (!question) return;
+
+    const userMsg = document.createElement("div");
+    userMsg.className = "user-message";
+    userMsg.textContent = input.value;
+    chatBox.appendChild(userMsg);
+
+    let response = "I’m sorry, I didn’t quite understand that. You can ask about delivery, payment, returns, or orders.";
+
+    if (question.includes("delivery")) {
+        response = "📦 Delivery usually takes 3–7 working days depending on your location.";
+    }
+    else if (question.includes("return")) {
+        response = "🔄 Returns are allowed within 14 days of purchase.";
+    }
+    else if (question.includes("payment")) {
+        response = "💳 We accept Orange Money and FNB payments.";
+    }
+    else if (question.includes("track") || question.includes("order")) {
+        response = "📧 After placing your order, you will receive an email with your tracking number.";
+    }
+    else if (question.includes("store") || question.includes("honor")) {
+        response = "🛍️ Honor Store is focused on quality activewear that blends comfort, confidence, and style.";
+    }
+
+
+    const agentMsg = document.createElement("div");
+    agentMsg.className = "agent-message";
+    agentMsg.textContent = "Honor Agent: " + response;
+    chatBox.appendChild(agentMsg);
+
+    chatBox.scrollTop = chatBox.scrollHeight;
+    input.value = "";
+}
+</script>
+  
+</body>
+</html>
