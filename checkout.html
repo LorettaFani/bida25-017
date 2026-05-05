@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honor Store</title>
+    <link rel="stylesheet" href="css/style1.css">
+    
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">HONOR GYM WEAR STORE</a>
+            <div class="nav-links">
+            <ul>
+                <li class="active"><a href="index.html"> Home</a></li>
+                <li><a href="products.html"> Products</a></li>
+                <li><a href="FAQ.html"> FAQ</a></li>
+                <li><a href="checkout.html"> Checkout</a></li>
+                <li><a href="contact.html"> Contact</a></li>
+            </ul>
+            </div>
+        </nav>  
+    </header>
+
+    <section class="checkout-section">
+    <form class="checkout-form">
+
+        <h2>Checkout</h2>
+
+        <h3>Your Cart</h3>
+        <ul id="cart-items"></ul>
+        <p id="cart-total"><strong>Total: P 0.00</strong></p>
+
+
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required/>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required/>
+
+        <p class="payment-label">Payment Method</p>
+
+        <div class="payment-options">
+            <label>
+                <input type="radio" name="payment" value="Orange Money" required/>
+                Orange Money
+            </label>
+
+            <label>
+                <input type="radio" name="payment" value="FNB" required/>
+                FNB
+            </label>
+        </div>
+
+        <div class="form-buttons">
+           <a href="confirmation.html" class="btn" onclick="clearCart()">Pay Now</a>
+        </div>
+
+    </form>
+</section>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+               <h3>Honor Store</h3>
+               <p> We honor. Live in purpose.</p>
+            </div>
+
+            <div class="footer-section">
+               <h3>Quick Links</h3>
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="products.html">Products</a></li>
+                  <li><a href="FAQ.html">FAQ</a></li>
+                  <li><a href="checkout.html">Checkout</a></li>
+                  <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+              <h3>Contact info</h3>
+              <p>Email: tshegofani@gmail.com<br>
+               Phone: +267 77 997 097<br>
+               +267 72 857 869</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Honor Store. All rights reserved.</p>
+            </div>
+    </footer>
+
+    <script>
+      loadCart();
+    </script>
+    
+</body>
+</html>

@@ -83,7 +83,7 @@ header {
     position: relative;
     padding: 2rem 2rem;
     text-align: center;
-    background-image: url("Images/backgroundimg1.jpg");
+    background-image: url(../images/background.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -294,7 +294,7 @@ header {
 
 .product-card img {
     width: 100%;
-    height: 260px;         
+    /* height: 260px;          */
     object-fit: cover;     
     border-radius: 12px;
 }

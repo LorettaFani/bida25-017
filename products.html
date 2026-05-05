@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honor Store</title>
+    <link rel="stylesheet" href="css/style1.css">
+    
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">HONOR GYM WEAR STORE</a>
+            <div class="nav-links">
+            <ul>
+                <li class="active"><a href="index.html"> Home</a></li>
+                <li><a href="products.html"> Products</a></li>
+                <li><a href="FAQ.html"> FAQ</a></li>
+                <li><a href="checkout.html"> Checkout</a></li>
+                <li><a href="contact.html"> Contact</a></li>
+            </ul>
+            </div>
+        </nav>  
+    </header>
+    
+    
+    <section class="products-marquee-section">
+    <div class="products-marquee-container">
+        <div class="products-marquee-track">
+           
+            <img src="images/romper.jpg" alt="">
+            <img src="images/tops.jpg" alt="">
+            <img src="images/leggings.jpg" alt="">
+            <img src="images/gymset.jpg" alt="">
+            <img src="images/shorts.jpg" alt="">
+            <img src="images/bra.jpg" alt="">
+            <img src="images/jumpsuit.jpg" alt="">
+
+           
+            <img src="images/romper.jpg" alt="">
+            <img src="images/tops.jpg" alt="">
+            <img src="images/leggings.jpg" alt="">
+            <img src="images/gymset.jpg" alt="">
+            <img src="images/shorts.jpg" alt="">
+            <img src="images/bra.jpg" alt="">
+            <img src="images/jumpsuit.jpg" alt="">
+        </div>
+    </div>
+</section>
+
+    <section class="products190">
+        <h2>Products</h2>
+
+        <div class="row1">
+
+            <div class="product-a">
+                <img src="images/romper.jpg" alt="Romper" width="200">
+                <h3>Rompers Ribbed Short Sleeve</h3>
+                <p>P 250.00</p>
+                <button onclick="addToCart('Romper Ribbed Short Sleeve')">Add to cart</button>
+            </div>
+
+            <div class="product-b">
+                <img src="images/tops.jpg" alt="Top" width="200">
+                <h3>Gym Top</h3>
+                <p>P 150.00</p>
+                <button onclick="addToCart('Gym Top')">Add to cart</button>
+            </div>
+
+            <div class="product-c">
+                <img src="images/leggings.jpg" alt="Leggings" width="200">
+                <h3>Leggings</h3>
+                <p>P 180.00</p>
+                <button onclick="addToCart('Leggings')">Add to cart</button>
+            </div>
+
+            <div class="product-d">
+                <img src="images/gymset.jpg" alt="Gym set" width="200">
+                <h3>Gym set</h3>
+                <p>P 850.00</p>
+                <button onclick="addToCart('Gym set')">Add to cart</button>
+            </div>
+
+        </div>
+
+        <div class="row2">
+
+            <div class="product-e">
+                <img src="images/shorts.jpg" alt="Shorts" width="200">
+                <h3>Gym Shorts</h3>
+                <p>P 150.00</p>
+                <button onclick="addToCart('Gym Shorts')">Add to cart</button>
+            </div>
+
+            <div class="product-f">
+                <img src="images/bra.jpg" alt="Sports bra" width="200">
+                <h3>Sports Bra</h3>
+                <p>P 350.00</p>
+                <button onclick="addToCart('Sports Bra')">Add to cart</button>
+            </div>
+
+            <div class="product-g">
+                <img src="images/jumpsuit.jpg" alt="Backless Jumpsuit" width="200">
+                <h3>Backless Jumpsuit</h3>
+                <p>P 250.00</p>
+                <button onclick="addToCart('Backless Jumpsuit')">Add to cart</button>
+            </div>
+
+        </div>
+    </section>
+    
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+               <h3>Honor Store</h3>
+               <p> We honor. Live in purpose.</p>
+            </div>
+
+            <div class="footer-section">
+               <h3>Quick Links</h3>
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="products.html">Products</a></li>
+                  <li><a href="FAQ.html">FAQ</a></li>
+                  <li><a href="checkout.html">Checkout</a></li>
+                  <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+              <h3>Contact info</h3>
+              <p>Email: tshegofani@gmail.com<br>
+               Phone: +267 77 997 097<br>
+               +267 72 857 869</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Honor Store. All rights reserved.</p>
+            </div>
+    </footer>
+    
+  <script>
+    
+    const prices = {
+     "Romper Ribbed Short Sleeve": 250,
+     "Gym Top": 150,
+     "Leggings": 180,
+     "Gym set": 850,
+     "Gym Shorts": 150,
+     "Sports Bra": 350,
+     "Backless Jumpsuit": 250
+    };
+
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+
+    function addToCart(productName) {
+      cart.push(productName);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(productName + " added to cart");
+    }
+
+
+    function loadCart() {
+      const cartList = document.getElementById("cart-items");
+      const totalDisplay = document.getElementById("cart-total");
+
+      if (!cartList || !totalDisplay) return;
+
+      cartList.innerHTML = "";
+      let total = 0;
+
+      cart.forEach(item => {
+      const price = prices[item];
+      total += price;
+
+      const li = document.createElement("li");
+      li.textContent = `${item} - P ${price.toFixed(2)}`;
+      cartList.appendChild(li);
+      });
+
+      totalDisplay.textContent = `Total: P ${total.toFixed(2)}`;
+    }
+
+
+    function clearCart() {
+      localStorage.removeItem("cart");
+    }
+  </script>
+</body>    
+</html>
