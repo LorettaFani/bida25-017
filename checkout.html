@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honor Store</title>
+    <link rel="stylesheet" href="css/style1.css">
+    
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">HONOR GYM WEAR STORE</a>
+            <div class="nav-links">
+            <ul>
+                <li class="active"><a href="index.html"> Home</a></li>
+                <li><a href="products.html"> Products</a></li>
+                <li><a href="FAQ.html"> FAQ</a></li>
+                <li><a href="checkout.html"> Checkout</a></li>
+                <li><a href="contact.html"> Contact</a></li>
+            </ul>
+            </div>
+        </nav>  
+    </header>
+    
+    <section class="checkout-container">
+
+    <div class="cart-section">
+
+        <h2>Your Cart</h2>
+
+        <ul id="cart-items"></ul>
+
+    </div>
+
+
+    <div class="summary-box">
+
+        <h2>Cart Totals</h2>
+
+        <p>
+            <span>Shipping</span>
+            <span>Free</span>
+        </p>
+
+        <p>
+            <span>TAX</span>
+            <span id="tax-amount">P 0.00</span>
+        </p>
+
+        <p>
+            <span>Subtotal</span>
+            <span id="subtotal">P 0.00</span>
+        </p>
+
+        <hr>
+
+        <p>
+            <strong>Total</strong>
+            <strong id="cart-total">P 0.00</strong>
+        </p>
+
+        <button class="clear-btn" onclick="clearCart()">
+            Clear Cart
+        </button>
+
+    </div>
+
+</section>
+
+    <section class="checkout-section">
+    <form class="checkout-form" id="checkoutForm">
+
+        <h2>Checkout</h2>
+
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required/>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required/>
+
+        <p class="payment-label">Payment Method</p>
+
+        <div class="payment-options">
+            <label>
+                <input type="radio" name="payment" value="Orange Money" required/>
+                Orange Money
+            </label>
+
+            <label>
+                <input type="radio" name="payment" value="FNB" required/>
+                FNB
+            </label>
+        </div>
+
+        <button type="submit" class="btn">
+            Pay Now
+        </button>
+    </form>
+    </section>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+               <h3>Honor Store</h3>
+               <p> We honor. Live in purpose.</p>
+            </div>
+
+            <div class="footer-section">
+               <h3>Quick Links</h3>
+                <ul>
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="products.html">Products</a></li>
+                  <li><a href="FAQ.html">FAQ</a></li>
+                  <li><a href="checkout.html">Checkout</a></li>
+                  <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+              <h3>Contact info</h3>
+              <p>Email: tshegofani@gmail.com<br>
+               Phone: +267 77 997 097<br>
+               +267 72 857 869</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Honor Store. All rights reserved.</p>
+            </div>
+    </footer>
+
+<script>
+
+let cart =
+    JSON.parse(localStorage.getItem("cart")) || [];
+
+function loadCart(){
+
+    const cartItems =
+        document.getElementById("cart-items");
+
+    const cartTotal =
+        document.getElementById("cart-total");
+
+    const subtotalElement =
+        document.getElementById("subtotal");
+
+    const taxElement =
+        document.getElementById("tax-amount");
+
+    cartItems.innerHTML = "";
+
+    let subtotal = 0;
+
+    cart.forEach((item, index) => {
+
+        const itemTotal =
+            item.price * item.quantity;
+
+        subtotal += itemTotal;
+
+        const li = document.createElement("li");
+
+        li.innerHTML = `
+
+        <div class="cart-box">
+
+            <div>
+                <h4>${item.name}</h4>
+
+                <p>
+                    Price: P ${item.price.toFixed(2)}
+                </p>
+
+                <p>
+                    Quantity: ${item.quantity}
+                </p>
+
+                <p>
+                    Subtotal:
+                    P ${itemTotal.toFixed(2)}
+                </p>
+            </div>
+
+            <button onclick="removeItem(${index})">
+                Remove
+            </button>
+
+        </div>
+
+        `;
+
+        cartItems.appendChild(li);
+
+    });
+
+    /* TAX CALCULATION */
+    let tax = subtotal * 0.14;
+
+    /* FINAL TOTAL */
+    let finalTotal = subtotal + tax;
+
+    subtotalElement.innerHTML =
+        `P ${subtotal.toFixed(2)}`;
+
+    taxElement.innerHTML =
+        `P ${tax.toFixed(2)}`;
+
+    cartTotal.innerHTML =
+        `P ${finalTotal.toFixed(2)}`;
+
+}
+
+
+   
+
+/* REMOVE ITEM */
+function removeItem(index){
+
+    cart.splice(index, 1);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    loadCart();
+
+}
+
+
+/* CLEAR CART */
+function clearCart(){
+
+    cart = [];
+
+    localStorage.removeItem("cart");
+
+    loadCart();
+
+}
+
+
+/* LOAD WHEN PAGE OPENS */
+loadCart();
+
+document.getElementById("checkoutForm")
+.addEventListener("submit", function(event){
+
+    event.preventDefault();
+
+    const fullname =
+        document.getElementById("fullname").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const payment =
+        document.querySelector(
+            'input[name="payment"]:checked'
+        );
+
+    /* CHECK IF CART IS EMPTY */
+    if(cart.length === 0){
+        alert("Your cart is empty.");
+        return;
+    }
+
+    /* VALIDATION */
+    if(fullname === ""){
+        alert("Please enter your full name.");
+        return;
+    }
+
+    if(email === ""){
+        alert("Please enter your email.");
+        return;
+    }
+
+    if(!payment){
+        alert("Please select a payment method.");
+        return;
+    }
+
+    /* IF EVERYTHING IS FILLED */
+    clearCart();
+
+    window.location.href =
+        "confirmation.html";
+
+});
+
+</script>
+   
+</body>
+</html>
